@@ -4,10 +4,11 @@
 <defs>
 </defs>
 <rect x="-200.0" y="-75.0" width="400" height="150" fill="#ffff" />
-<path d="M-160.0,0 L160.0,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
-<path d="M164.0,0 L166.0,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
-<path d="M168.0,0 L170.0,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
-<path d="M172.0,0 L174.0,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
+<path d="M151.875,0 L152.5,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
+<path d="M154.375,0 L155.0,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
+<path d="M156.875,0 L157.5,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
+<path d="M159.375,0 L160.0,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
+<path d="M-160.0,0 L150.0,0" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
 <path d="M-152.0,-4 L-152.0,-32" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />
 <text x="-150.0" y="-25" font-size="6" font-family="Georgia" text-anchor="auto" dominant-baseline="auto"><tspan x="-150.0" dy="0em">text start</tspan><tspan x="-150.0" dy="1em">2023-06-06 13:44:33</tspan></text>
 <path d="M-143.4730095507903,4 L-143.4730095507903,32" fill="#eeee00" stroke="black" stroke-width="1" stroke-linecap="round" />

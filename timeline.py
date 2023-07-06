@@ -34,7 +34,7 @@ def create_canvas(x_size, y_size):
 
 class Timeline:
 
-    def __init__(self, canvas, x_pos_start, x_pos_end, y_pos, start_time=None, end_time=None, timeline_padding = 0.8):
+    def __init__(self, canvas, x_pos_start, x_pos_end, y_pos, start_time=None, end_time=None, timeline_padding = 0.8, dot_endning=False):
         if start_time != None:
             start_time = calculate_times(start_time)
             self.start_time = start_time["time"]
@@ -57,6 +57,7 @@ class Timeline:
         self.canvas = canvas
         self.entry_list = []
         self.timeline_padding = timeline_padding
+        self.dot_endning = dot_endning
 
 
 
@@ -119,23 +120,40 @@ class Timeline:
 
             print("new start and end times!", self.start_time, self.end_time)
 
-        line = draw.Lines(self.timeline_start, self.y_pos, self.timeline_end, self.y_pos, close=False, fill="#eeee00", stroke="black", stroke_width=1, stroke_linecap="round")
+        end = self.timeline_end
+        if self.dot_endning:
+            dot_size = 10
+            dot_start = self.timeline_end - dot_size
+            self.render_dotted_line(dot_start, self.timeline_end)
+            end = dot_start
+
+        line = draw.Lines(self.timeline_start, self.y_pos, end, self.y_pos, close=False, fill="#eeee00", stroke="black", stroke_width=1, stroke_linecap="round")
         self.canvas.append(line)
 
-        for i in range(1, 4):
-            line_length = 2
-            line_break_length = 4
-            start = self.timeline_end + (line_break_length * i)
-            end = start + line_length
-            line = draw.Lines(start, self.y_pos, end, self.y_pos, close=False, fill="#eeee00", stroke="black", stroke_width=1, stroke_linecap="round")
-            self.canvas.append(line)
 
-        print("render", len(self.entry_list))
+
+
+        # print("render", len(self.entry_list))
         for index, entry in enumerate(self.entry_list):
             self.render_timeline_entry(entry["datetime"], entry["text"], entry["position"], index)
 
         self.canvas.set_pixel_scale(2)
         self.canvas.save_svg("example.svg")
+
+    def render_dotted_line(self, start_x_pos, end_x_pos, nr_dotts=4):
+        
+        len = end_x_pos - start_x_pos
+        base_line_length = 0.5
+        base_break_length = 1.5
+        line_length = (len/(nr_dotts*2)) * base_line_length
+        break_length = (len/(nr_dotts*2)) * base_break_length
+
+        for i in range(0, nr_dotts):
+            start = start_x_pos + break_length + (break_length + line_length) * i
+            end = start + line_length
+
+            line = draw.Lines(start, self.y_pos, end, self.y_pos, close=False, fill="#eeee00", stroke="black", stroke_width=1, stroke_linecap="round")
+            self.canvas.append(line)
 
 
 
@@ -148,7 +166,7 @@ if __name__ == "__main__":
     timeline_x_start = -cap_len
     timeline_x_end = cap_len
 
-    timeline = Timeline(canvas, timeline_x_start, timeline_x_end, 0, timeline_padding=0.95, end_time="2023-06-14")
+    timeline = Timeline(canvas, timeline_x_start, timeline_x_end, 0, timeline_padding=0.95, end_time="2023-06-14", dot_endning=True)
     timeline.add_entry("2023-06-06 13:44:33", "text start")
     timeline.add_entry("2023-06-06 18:44:33", "text near start")
     timeline.add_entry("2023-06-08 14:36", "text midddddddddle")
